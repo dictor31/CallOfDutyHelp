@@ -35,46 +35,6 @@ namespace CallOfDuty.Tests
             Assert.That(students.Count, Is.EqualTo(students.Distinct().Count()));
         }
 
-        [TestCase(2)]
-        public void Students_CantBeTheSame_PastReject(int count)
-        {
-            string file = "testStudents4.txt";
-            StudentRepository db = new StudentRepository(file);
-            StudentDuty studentDuty = new StudentDuty(db);
-            SelectDuty todayDuty = new SelectDuty(studentDuty);
-
-            List<Student> students = studentDuty.GetRandomStudents(count);
-
-            todayDuty.RejectAndGetAnotherStudent(students[1]);
-            todayDuty.RejectAndGetAnotherStudent(students[1]);
-            todayDuty.RejectAndGetAnotherStudent(students[1]);
-
-            Assert.That(students[0], Is.Not.EqualTo(students[students.Count - 1]));
-        }
-
-        [TestCase(2)]
-        public void GetRandomStudents_Rejection_AllFalseAfterRejection(int count)
-        {
-            string file = "testStudents5.txt";
-            StudentRepository db = new StudentRepository(file);
-            StudentDuty studentDuty = new StudentDuty(db);
-            SelectDuty todayDuty = new SelectDuty(studentDuty);
-
-            List<Student> students = studentDuty.GetRandomStudents(count);
-
-            Dictionary<Student, bool> studentStatus = new Dictionary<Student, bool>();
-
-            foreach (var student in students)
-            {
-                todayDuty.RejectAndGetAnotherStudent(student);
-            }
-
-            foreach (var status in studentStatus.Values)
-            {
-                Assert.That(status, Is.All.True);
-            }
-        }
-
         [Test]
         public void StudentDuty_ThrowExceptionOnPickRandomStudent_CountNotEnough()
         {

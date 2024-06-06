@@ -13,7 +13,7 @@ try
     {
         int index = 1;
         foreach (var student in todayDuty.Students)
-            Console.WriteLine($"#{index++} {student.Name} {student.Info}");
+        Console.WriteLine($"#{index++} {student.Name} {student.Info}");
 
         Console.WriteLine("Укажите индекс студента и через пробел знак + или - для подтверждения или отмены участия студента в святом дежурстве");
 

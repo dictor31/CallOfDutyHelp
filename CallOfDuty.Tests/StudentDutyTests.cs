@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -32,6 +33,41 @@ namespace CallOfDuty.Tests
             Assert.IsNotNull(students);
             Assert.That(students.Count, Is.EqualTo(count));
             Assert.That(students.Count, Is.EqualTo(students.Distinct().Count()));
+        }
+
+        [TestCase(2)]
+        public void Students_CantBeTheSame_PastReject(int count)
+        {
+            string file = "testStudents4.txt";
+            StudentRepository db = new StudentRepository(file);
+            StudentDuty studentDuty = new StudentDuty(db);
+            SelectDuty todayDuty = new SelectDuty(studentDuty);
+
+            List<Student> students = studentDuty.GetRandomStudents(count);
+
+            todayDuty.RejectAndGetAnotherStudent(students[1]);
+            todayDuty.RejectAndGetAnotherStudent(students[1]);
+            todayDuty.RejectAndGetAnotherStudent(students[1]);
+
+            Assert.That(students.Count, Is.EqualTo(count));
+            Assert.That(students[0], Is.Not.EqualTo(students[students.Count - 1]));
+        }
+        [TestCase(2)]
+        public void Students_GetNull(int count)
+        {
+            string file = "testStudents.txt";
+            StudentRepository db = new StudentRepository(file);
+            StudentDuty studentDuty = new StudentDuty(db);
+            SelectDuty todayDuty = new SelectDuty(studentDuty);
+
+            Dictionary<Student, bool> studentStatus = new Dictionary<Student, bool>();
+            List<Student> students = studentDuty.GetRandomStudents(count);
+
+            for (int i = 0; i < count; i++)
+            {
+                todayDuty.RejectAndGetAnotherStudent(students[0]);
+            }
+            Assert.That(studentStatus, Is.All.Not.False);
         }
 
         [Test]

@@ -44,7 +44,7 @@
         private void SetStudentStatus(Student student, bool status)
         {
             if (!studentStatus.ContainsKey(student))
-                studentStatus.Add(student, status);
+            studentStatus.Add(student, status);
             studentStatus[student] = status;
         }
 

@@ -38,6 +38,7 @@
             Students.Remove(student);
             Student stud = studentDuty.GetRandomStudents(1, studentStatus.Keys).First();
             Students.Add(stud);
+            SetStudentStatus(stud, false);
             return stud;
         }
 

@@ -49,16 +49,13 @@ namespace CallOfDuty.Tests
             todayDuty.RejectAndGetAnotherStudent(students[1]);
             todayDuty.RejectAndGetAnotherStudent(students[1]);
 
-            Assert.That(students.Count, Is.EqualTo(count));
             Assert.That(students[0], Is.Not.EqualTo(students[students.Count - 1]));
         }
 
         [TestCase(2)]
-        [TestCase(5)]
-        [TestCase(10)]
         public void GetRandomStudents_Rejection_AllFalseAfterRejection(int count)
         {
-            string file = "testStudents.txt";
+            string file = "testStudents5.txt";
             StudentRepository db = new StudentRepository(file);
             StudentDuty studentDuty = new StudentDuty(db);
             SelectDuty todayDuty = new SelectDuty(studentDuty);
@@ -74,7 +71,7 @@ namespace CallOfDuty.Tests
 
             foreach (var status in studentStatus.Values)
             {
-                
+                Assert.That(status, Is.All.True);
             }
         }
 

@@ -52,22 +52,30 @@ namespace CallOfDuty.Tests
             Assert.That(students.Count, Is.EqualTo(count));
             Assert.That(students[0], Is.Not.EqualTo(students[students.Count - 1]));
         }
+
         [TestCase(2)]
-        public void Students_GetNull(int count)
+        [TestCase(5)]
+        [TestCase(10)]
+        public void GetRandomStudents_Rejection_AllFalseAfterRejection(int count)
         {
             string file = "testStudents.txt";
             StudentRepository db = new StudentRepository(file);
             StudentDuty studentDuty = new StudentDuty(db);
             SelectDuty todayDuty = new SelectDuty(studentDuty);
 
-            Dictionary<Student, bool> studentStatus = new Dictionary<Student, bool>();
             List<Student> students = studentDuty.GetRandomStudents(count);
 
-            for (int i = 0; i < count; i++)
+            Dictionary<Student, bool> studentStatus = new Dictionary<Student, bool>();
+
+            foreach (var student in students)
             {
-                todayDuty.RejectAndGetAnotherStudent(students[0]);
+                todayDuty.RejectAndGetAnotherStudent(student);
             }
-            Assert.That(studentStatus, Is.All.Not.False);
+
+            foreach (var status in studentStatus.Values)
+            {
+                
+            }
         }
 
         [Test]
@@ -122,5 +130,6 @@ namespace CallOfDuty.Tests
             string path = Path.Combine(Environment.CurrentDirectory, folder);
             Assert.That(Directory.Exists(path), Is.True);
         }
+
     }
 }

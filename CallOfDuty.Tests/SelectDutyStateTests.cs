@@ -108,7 +108,8 @@ namespace CallOfDuty.Tests
             var stud2 = model.Students.FirstOrDefault(s => s.Info == "test3");
             var stud3 = model.RejectAndGetAnotherStudent(stud2);
             Assert.IsNotNull(stud3);
-            Assert.That(stud3.Name, Is.Not.SameAs(stud1.Name));
+            Assert.That(stud3.Info, Is.Not.SameAs(stud1.Info));
         }
+
     }
 }

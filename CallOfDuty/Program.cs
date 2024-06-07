@@ -13,7 +13,7 @@ try
     while (todayDuty.CountApproved < 2)
     {
         int index = 1;
-        mainMenu.SelectVictums(index, todayDuty);
+        mainMenu.SelectVictims(index, todayDuty);
     }
 }
 catch (SelectDutyException ex)

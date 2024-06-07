@@ -101,5 +101,14 @@ namespace CallOfDuty.Tests
                 Assert.That(studentDuty.GetDutyCount(stud), Is.EqualTo(1));
             }
         }
+        [Test]
+        public void TodayDutyStudents_NotAsSame()
+        {
+            var stud1 = model.Students.FirstOrDefault(s => s.Info == "test2");
+            var stud2 = model.Students.FirstOrDefault(s => s.Info == "test3");
+            var stud3 = model.RejectAndGetAnotherStudent(stud2);
+            Assert.IsNotNull(stud3);
+            Assert.That(stud3.Name, Is.Not.SameAs(stud1.Name));
+        }
     }
 }

@@ -9,16 +9,16 @@ namespace CallOfDuty
 {
     public class MainMenu
     {
-        private void GetVictums(int index, SelectDuty todayDuty)
+        private void GetVictims(int index, SelectDuty todayDuty)
         {
             foreach (var student in todayDuty.Students)
             Console.WriteLine($"#{index++} {student.Name} {student.Info}");
         }
-        public void SelectVictums(int index, SelectDuty todayDuty)
+        public void SelectVictims(int index, SelectDuty todayDuty)
         {
             while (todayDuty.CountApproved < 2)
             {
-                GetVictums (index, todayDuty);
+                GetVictims (index, todayDuty);
                 Console.WriteLine("Укажите индекс студента и через пробел знак + или - для подтверждения или отмены участия студента в святом дежурстве");
 
                 var answer = Console.ReadLine();
@@ -45,9 +45,9 @@ namespace CallOfDuty
                         todayDuty.RejectAndGetAnotherStudent(todayDuty.Students[index]);
                 }
             }
-            SaveVictums(todayDuty);
+            SaveVictims(todayDuty);
         }
-        private void SaveVictums(SelectDuty todayDuty)
+        private void SaveVictims(SelectDuty todayDuty)
         {
             todayDuty.Save();
             Console.WriteLine("Дежурные сегодня:");

@@ -87,6 +87,5 @@ namespace CallOfDuty.Tests
             string path = Path.Combine(Environment.CurrentDirectory, folder);
             Assert.That(Directory.Exists(path), Is.True);
         }
-
     }
 }

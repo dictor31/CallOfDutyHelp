@@ -102,7 +102,7 @@ namespace CallOfDuty.Tests
             }
         }
         [Test]
-        public void TodayDutyStudents_NotAsSame()
+        public void TodayDutyStudents_NotASame()
         {
             var stud1 = model.Students.FirstOrDefault(s => s.Info == "test2");
             var stud2 = model.Students.FirstOrDefault(s => s.Info == "test3");

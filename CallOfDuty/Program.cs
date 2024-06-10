@@ -41,7 +41,7 @@ try
                 mainMenu.DeleteVictim();
                 break;
             case 4:
-
+                mainMenu.EditVictim();
                 break;
             case 5:
                 isActive = false;

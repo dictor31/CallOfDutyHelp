@@ -121,5 +121,44 @@ namespace CallOfDuty
                 Console.WriteLine($"Ошибка при удалении студента: {ex.Message}");
             }
         }
+        public void EditVictim()
+        {
+            try
+            {
+                string[] readText = File.ReadAllLines("C:\\Users\\User\\source\\repos\\CallOfDutyHelp\\CallOfDuty\\Students.txt");
+                int num = 1;
+                Console.Clear();
+                foreach (string line in readText)
+                {
+                    Console.WriteLine($"{num} {line}");
+                    num++;
+                }
+                Console.WriteLine("Выберите номер студента, которого необходимо редактировать");
+                int indexToEdit = int.Parse(Console.ReadLine()) - 1;
+
+                string[] newLines = new string[readText.Length];
+                for (int i = 0; i < readText.Length; i++)
+                {
+                    if (i == indexToEdit)
+                    {
+                        string name = Console.ReadLine();
+                        string surName = Console.ReadLine();
+                        string studentData = $"{name};{surName};";
+                        newLines[i] = studentData; // Присвоить новое значение элементу массива с тем же индексом
+                    }
+                    else
+                    {
+                        newLines[i] = readText[i];
+                    }
+                }
+
+                File.WriteAllLines("C:\\Users\\User\\source\\repos\\CallOfDutyHelp\\CallOfDuty\\Students.txt", newLines);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка при редактировании студента: {ex.Message}");
+            }
+        }
+
     }
 }

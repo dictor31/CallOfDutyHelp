@@ -3,6 +3,7 @@ using System;
 using System.Globalization;
 using System.Xml.Linq;
 using System.IO;
+using System.Transactions;
 
 string file = "Students.txt";
 StudentRepository studentRepository = new StudentRepository(file);
@@ -13,8 +14,9 @@ SelectDuty todayDuty = new SelectDuty(studentDuty);
 try
 {
     MainMenu mainMenu = new MainMenu();
+    bool isActive = true;
 
-    while (true)
+    while (isActive)
     {
         Console.WriteLine("Выберите действие:\n" +
         "1. Выбрать дежурных на сегодня\n" +
@@ -37,6 +39,12 @@ try
                 break;
             case 3:
                 mainMenu.DeleteVictim();
+                break;
+            case 4:
+
+                break;
+            case 5:
+                isActive = false;
                 break;
         }
     }

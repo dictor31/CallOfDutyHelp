@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -86,6 +87,38 @@ namespace CallOfDuty
                 {
                     Console.WriteLine($"Ошибка при добавлении студента: {ex.Message}");
                 }
+            }
+        }
+        public void DeleteVictim()
+        {
+            try
+            {
+                string[] readText = File.ReadAllLines("C:\\Users\\User\\source\\repos\\CallOfDutyHelp\\CallOfDuty\\Students.txt");
+                int num = 1;
+                Console.Clear();
+                foreach (string line in readText)
+                {
+                    Console.WriteLine($"{num} {line}");
+                    num++;
+                }
+                Console.WriteLine("Выберите номер студента, которого необходимо удалить");
+                int indexToRemove = int.Parse(Console.ReadLine()) - 1;
+
+                string[] newLines = new string[readText.Length - 1];
+                for (int i = 0, j = 0; i < readText.Length; i++)
+                {
+                    if (i == indexToRemove)
+                    {
+                        continue;
+                    }
+                    newLines[j++] = readText[i];
+                }
+
+                File.WriteAllLines("C:\\Users\\User\\source\\repos\\CallOfDutyHelp\\CallOfDuty\\Students.txt", newLines);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка при удалении студента: {ex.Message}");
             }
         }
     }

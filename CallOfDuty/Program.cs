@@ -36,7 +36,7 @@ try
                 mainMenu.AddVictim();
                 break;
             case 3:
-
+                mainMenu.DeleteVictim();
                 break;
         }
     }

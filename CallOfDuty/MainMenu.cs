@@ -141,10 +141,12 @@ namespace CallOfDuty
                 {
                     if (i == indexToEdit)
                     {
+                        Console.WriteLine("Введите новое имя студента");
                         string name = Console.ReadLine();
+                        Console.WriteLine("Введите новую фамилию студента");
                         string surName = Console.ReadLine();
                         string studentData = $"{name};{surName};";
-                        newLines[i] = studentData; // Присвоить новое значение элементу массива с тем же индексом
+                        newLines[i] = studentData;
                     }
                     else
                     {

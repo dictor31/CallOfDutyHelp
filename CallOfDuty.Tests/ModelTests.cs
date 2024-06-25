@@ -50,7 +50,5 @@ namespace CallOfDuty.Tests
             Assert.IsNotNull(prop);
             Assert.That(prop.PropertyType, Is.EqualTo(typeof(List<Student>)));
         }
-
-
     }
 }
